@@ -5,7 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <!--    <bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl" scope="singleton" init-method="init" destroy-method="destroy"></bean>-->
+        <!--静态工厂实例化-->
 <!--    <bean id="userDao" class="com.itheima.factory.StaticFactory" factory-method="getUserDao"></bean>-->
+        <!--动态工厂实例化-->
 <!--    <bean id="factory" class="com.itheima.factory.DynamicFactory"/>-->
 <!--    <bean id="userDao" factory-bean="factory" factory-method="getUserDao"/>-->
 
