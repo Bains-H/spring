@@ -1,18 +1,19 @@
 package com.itheima.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itheima.domain.User;
+import com.itheima.domain.Vo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author huang.b.h
@@ -98,5 +99,55 @@ public class UserController {
         user.setUsername("wangwu");
         user.setAge(30);
         return user;
+    }
+
+    @RequestMapping(value = "/quick11")
+    @ResponseBody
+    public void save11(String username,int age){
+        System.out.println(username);
+        System.out.println(age);
+    }
+
+    @RequestMapping(value = "/quick12")
+    @ResponseBody
+    public void save12(User user){
+        System.out.println(user);
+    }
+
+    @RequestMapping(value = "/quick13")
+    @ResponseBody
+    public void save13(String[] strs){
+        System.out.println(Arrays.asList(strs));
+    }
+
+    @RequestMapping(value = "/quick14")
+    @ResponseBody
+    public void save14(Vo vo){
+        System.out.println(vo);
+    }
+
+    @RequestMapping(value = "/quick15")
+    @ResponseBody
+    public void save15(@RequestBody List<User> userList){
+        System.out.println(userList);
+    }
+
+    @RequestMapping(value = "/quick16")
+    @ResponseBody
+    public void save16(@RequestParam(value = "name",required = false,defaultValue = "itcase") String username){
+        System.out.println(username);
+    }
+
+    // localhost:8080/user/quick17/zhangsan
+    @RequestMapping(value = "/quick17/{name}")
+    @ResponseBody
+    public void save17(@PathVariable(value = "username") String username){
+        System.out.println(username);
+    }
+
+    @RequestMapping(value = "/quick18")
+    @ResponseBody
+    public void save18(Date date){
+        System.out.println(date);
     }
 }
