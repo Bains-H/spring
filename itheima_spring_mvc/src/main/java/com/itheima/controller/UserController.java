@@ -6,10 +6,13 @@ import com.itheima.domain.Vo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
@@ -149,5 +152,45 @@ public class UserController {
     @ResponseBody
     public void save18(Date date){
         System.out.println(date);
+    }
+
+    @RequestMapping(value = "/quick19")
+    @ResponseBody
+    public void save19(HttpServletRequest request, HttpServletResponse response, HttpSession session){
+        System.out.println(request);
+        System.out.println(response);
+        System.out.println(session);
+    }
+
+    @RequestMapping(value = "/quick20")
+    @ResponseBody
+    public void save20(@RequestHeader(value = "User-Agent",required = false) String user_agent){
+        System.out.println(user_agent);
+    }
+
+    @RequestMapping(value = "/quick21")
+    @ResponseBody
+    public void save21(@CookieValue(value = "JSESSIONID",required = false) String jsessionid){
+        System.out.println(jsessionid);
+    }
+
+    @RequestMapping(value = "/quick22")
+    @ResponseBody
+    public void save22(String username, MultipartFile uploadFile) throws IOException {
+        System.out.println(username);
+        //获得上传文件名称
+        String originalFilename = uploadFile.getOriginalFilename();
+        uploadFile.transferTo(new File("E:\\练习项目\\测试数据\\"+originalFilename));
+    }
+
+    @RequestMapping(value = "/quick23")
+    @ResponseBody
+    public void save23(String username, MultipartFile[] uploadFiles) throws IOException {
+        System.out.println(username);
+        //获得上传文件名称
+        for (MultipartFile uploadFile:uploadFiles){
+            String originalFilename = uploadFile.getOriginalFilename();
+            uploadFile.transferTo(new File("E:\\练习项目\\测试数据\\"+originalFilename));
+        }
     }
 }
